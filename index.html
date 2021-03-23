@@ -22,7 +22,7 @@
             <a v-bind:href="newItem" target="_blank">Dynamic Link</a>
             
             <ul>
-                <li v-for="item in items">{{ item }}</li>
+                <li v-for="item in items" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{ item.label }}</li>
             </ul>
             <p v-if="items.length === 0">No items to show.</p>
         </div>
@@ -35,6 +35,18 @@
                     header: 'Shopping List',
                     newItem: '',
                     items: [
+                        {
+                            label: '1 paper',
+                            purchased: true,
+                        },
+                        {
+                            label: '2 pencils',
+                            purchased: false,
+                        },
+                        {
+                            label: '3 pens',
+                            purchased: true,
+                        },
                         // '1 paper',
                         // '2 pencils',
                         // '3 pens'
@@ -42,13 +54,19 @@
                 },
                 methods: {
                     saveItem: function () {
-                        this.items.push(this.newItem);
+                        this.items.push({
+                            label: this.newItem,
+                            purchased: false
+                        });
                         this.newItem = '';
                     },
                     changeState: function(newState) {
                         this.state = newState;
 
                         this.newItem = '';
+                    },
+                    togglePurchased: function(item) {
+                        item.purchased = !item.purchased;
                     }
                 }
             })
