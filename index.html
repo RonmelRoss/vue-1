@@ -8,19 +8,19 @@
     </head>
     <body>
         <div id="shopping-list">
-            <h1>{{ header }}</h1>
-            <input v-model="header">
+            <h1>{{ header.toLocaleUpperCase() }}</h1>
+            <input v-model="newItem" type="text" placeholder="Add an item" >
             <ul>
-                <li v-for="items in item">{{ item }}</li>
+                <li v-for="item in items">{{ item }}</li>
             </ul>
         </div>
 
-        
         <script>
             var shoppingList = new Vue({
                 el: '#shopping-list',
                 data: {
-                    header: 'Vue is ready to party',
+                    header: 'Shopping List',
+                    newItem: '',
                     items: [
                         '1 paper',
                         '2 pencils',
