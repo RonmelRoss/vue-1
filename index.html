@@ -4,19 +4,28 @@
         <meta charset="UTF-8">
         <title>Shopping List App</title>
         <link rel="stylesheet" href="main.css">
+        <script src="https://unpkg.com/vue"></script>
     </head>
     <body>
         <div id="shopping-list">
             <h1>{{ header }}</h1>
             <input v-model="header">
+            <ul>
+                <li v-for="items in item">{{ item }}</li>
+            </ul>
         </div>
 
-        <script src="https://unpkg.com/vue"></script>
+        
         <script>
             var shoppingList = new Vue({
                 el: '#shopping-list',
                 data: {
                     header: 'Vue is ready to party',
+                    items: [
+                        '1 paper',
+                        '2 pencils',
+                        '3 pens'
+                    ]
                 }
             })
         </script>
